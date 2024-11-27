@@ -1,6 +1,7 @@
 # Injectable Mapper
 
-## Controller
+
+## Controller / How to use
 
 ```cs
 [ApiController]
@@ -21,6 +22,20 @@ public class MapperController : ControllerBase
             Name = nameof(Model)
         });
     }
+}
+```
+
+## Model & Dto
+
+```cs
+public record Model
+{
+    public string Name { get; set; }
+}
+
+public record ModelDto
+{
+    public string Name { get; set; }
 }
 ```
 
@@ -58,7 +73,7 @@ public interface IMapper<TIn, TOut>
 }
 ```
 
-## Concrete Mapper
+## Concrete Mapper (Model -> ModelDto)
 
 ```cs
 public class ModelToDtoMapper : IMapper<Model, ModelDto>
