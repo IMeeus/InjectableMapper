@@ -82,9 +82,9 @@ public interface IMapper<TIn, TOut>
 
 ## General Injectable Mapper
 
-This is a general mapper that passes through its mapping to other mappers in the service provider.
-I've made this so that there's only 1 service you need to inject to be able to use all registered mappers.
-When the mapper is not found, an `InvalidOperationException` is thrown with a clear message, so that a developer easily know what's wrong.
+This is a general mapper that delegates its mapping to other mappers in the service collection.
+So with this 1 service, you can access all registered mappers, which reduces the amount of services you need to inject.
+When a mapper is not found, an `InvalidOperationException` is thrown with a clear message, so that a developer easily know what's wrong.
 
 ```cs
 public interface IMapper
