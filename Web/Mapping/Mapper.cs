@@ -16,7 +16,7 @@
 
         public TOut Map<TIn, TOut>(TIn model)
         {
-            var mapper = _serviceProvider.GetService<IMapper<TIn, TOut>>();
+            var mapper = _serviceProvider.GetRequiredService<IMapper<TIn, TOut>>();
             return mapper.Map(model);
         }
     }
