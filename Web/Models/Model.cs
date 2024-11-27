@@ -1,6 +1,6 @@
 ﻿namespace Web.Models
 {
-    public record ModelV1Dto
+    public record Model
     {
         public string Name { get; set; }
     }

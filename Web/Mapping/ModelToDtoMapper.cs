@@ -2,9 +2,9 @@
 
 namespace Web.Mapping
 {
-    public class ModelV1ToDtoMapper : IMapper<ModelV1, ModelV1Dto>
+    public class ModelToDtoMapper : IMapper<Model, ModelDto>
     {
-        public ModelV1Dto Map(ModelV1 model)
+        public ModelDto Map(Model model)
         {
             return new()
             {

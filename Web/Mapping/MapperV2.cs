@@ -2,7 +2,7 @@
 {
     public interface IMapperV2
     {
-        TOut Map<TIn, TOut>(TIn model);
+        TOut Map<TOut>(object model);
     }
 
     public class MapperV2 : IMapperV2
@@ -14,10 +14,16 @@
             _serviceProvider = serviceProvider;
         }
 
-        public TOut Map<TIn, TOut>(TIn model)
+        public TOut Map<TOut>(object model)
         {
-            var mapper = _serviceProvider.GetService<IMapper<TIn, TOut>>();
-            return mapper.Map(model);
+            var inputType = model.GetType();
+            var outputType = typeof(TOut);
+            var mapperType = typeof(IMapper<,>).MakeGenericType(inputType, outputType);
+
+            var mapper = _serviceProvider.GetRequiredService(mapperType);
+            var method = mapper.GetType().GetMethod(nameof(Map));
+
+            return (TOut)method.Invoke(mapper, new[] { model });
         }
     }
 }
